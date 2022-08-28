@@ -78,29 +78,29 @@ async function main() {
 	// user1 makes order
 	transaction = await exchange.connect(user1).makeOrder(ETHx.address, tokens(100), Btx.address, tokens(10))
 	result = await transaction.wait()
-	console.log(`Made order from ${user1.address}`)
+	console.log(`Order from ${user1.address}`)
 	// user2 fills order
 	orderId = result.events[0].args.id
 	transaction = await exchange.connect(user2).fillOrder(orderId)
 	result = await transaction.wait()
-	console.log(`Filled order from ${user2.address}\n`)
+	console.log(`Filled order from ${user1.address}\n`)
 	// wait 1 sec..
 	await wait(1)
 	// user1 makes another order
 	transaction = await exchange.makeOrder(ETHx.address, tokens(50), Btx.address, tokens(15))
 	result = await transaction.wait()
-	console.log(`Another order from ${user1.address}`)
+	console.log(`Order from ${user1.address}`)
 	// user2 fills another order
 	orderId = result.events[0].args.id
 	transaction = await exchange.connect(user2).fillOrder(orderId)
 	result = await transaction.wait()
-	console.log(`Another filled order from ${user2.address}\n`)
+	console.log(`Filled order from ${user1.address}\n`)
 	// wait 1 sec..
 	await wait(1)
 	// user1 makes final order
 	transaction = await exchange.connect(user1).makeOrder(ETHx.address, tokens(200), Btx.address, tokens(20))
 	result = await transaction.wait()
-	console.log(`Final order from ${user1.address}`)
+	console.log(`Order from ${user1.address}`)
 	// user2 fills final order
 	orderId = result.events[0].args.id
 	transaction = await exchange.connect(user2).fillOrder(orderId)
