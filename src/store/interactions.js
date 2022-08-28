@@ -1,5 +1,5 @@
-import { ethers } from 'ethers'
-import TOKEN_abi from '../abis/Token.json'
+import { ethers } from 'ethers';
+import TOKEN_abi from '../abis/Token.json';
 
 export const loadProvider = (dispatch) => {
     const connection = new ethers.providers.Web3Provider(window.ethereum)
@@ -10,14 +10,14 @@ export const loadProvider = (dispatch) => {
 
 export const loadNetwork = async (provider, dispatch) => {
 	const { chainId } = await provider.getNetwork()
-	dispatch({ type: 'NETWORK_LOADED', chainID })
+	dispatch({ type: 'NETWORK_LOADED', chainId })
 
 	return chainId
 }
 
 export const loadAccount = async (dispatch) => {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    const account = ethers.utils.getAddress(account[0])
+    const account = ethers.utils.getAddress(accounts[0])
 
     dispatch({ type: 'ACCOUNT_LOADED', account })
 
@@ -25,11 +25,13 @@ export const loadAccount = async (dispatch) => {
 }
 
 export const loadToken = async (provider, address, dispatch) => {
-    const token = new ethers.Contract(address, TOKEN_abi, provider)
-    const symbol = await token.symbol()
+    let token, symbol
+
+    token = new ethers.Contract(address, TOKEN_abi, provider)
+    symbol = await token.symbol()
 
     dispatch({ type: 'TOKEN_LOADED', token, symbol })
 
-    return account
+    return token
 }
 

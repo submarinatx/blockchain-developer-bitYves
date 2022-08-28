@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { ethers } from 'ethers';
 import config from '../config.json';
-import TOKEN_abi from '../abis/Token.json';
 
-import { loadProvider,
+import {
+  loadProvider,
   loadNetwork,
   loadAccount,
   loadToken
@@ -14,7 +13,7 @@ function App() {
   const dispatch = useDispatch()
 
   const loadBlockchainData = async () => { 
-    const account = await loadAccount(dispatch)
+    await loadAccount(dispatch)
    
     const provider = loadProvider(dispatch)
     const chainId = await loadNetwork(provider, dispatch)
