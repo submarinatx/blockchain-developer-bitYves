@@ -10,19 +10,32 @@ import {
   loadExchange
 } from '../store/interactions';
 
+import Navbar from './Navbar'
+
 function App() {
   const dispatch = useDispatch()
 
   const loadBlockchainData = async () => { 
+
     // connect ethers to blockchain
     const provider = loadProvider(dispatch)
     const chainId = await loadNetwork(provider, dispatch)
+   
+    // reload page when network changes
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+  
     // fetch current network's chainId (eg. Hardhat: 31337, kova:42)
-    await loadAccount(provider, dispatch)
+    window.ethereum.on('accountsChanged', () => {
+      loadAccount(provider, dispatch)
+    })
+   
     // fetch current account & balance
     const Btx = config[chainId].Btx
     const ETHx = config[chainId].ETHx
     await loadTokens(provider, [Btx.address, ETHx.address], dispatch)
+  
     // load exchange smart contract
     const exchangeConfig = config[chainId].exchange
     await loadExchange(provider, exchangeConfig.address, dispatch)
@@ -36,7 +49,7 @@ function App() {
   return (
     <div>
 
-      {/* Navbar */}
+      <Navbar />
 
       <main className='exchange grid'>
         <section className='exchange__section--left grid'>
