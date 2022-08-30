@@ -23,7 +23,7 @@ const Markets = () => {
 	     		<option value={`${config[chainId].Btx.address},${config[chainId].ETHx.address}`}>BTX / ETHx</option>
 	   			<option value={`${config[chainId].Btx.address},${config[chainId].DAIx.address}`}>BTX / DAIx</option>
 	   		</select>
-    	):(
+    	) : (
     		<div>
     			<p>Not Deployed to Network</p>
     		</div>

@@ -8,7 +8,8 @@
 	--clr-white: #F1F2F9;
 	--clr-blue: #2187D0;
 	--clr-red: #F45353;
-	--clr-green: #25CE8F;
+	--clr-green: #689C46;
+	--clr-yellow: #EBC119;
 }
 
 * {
@@ -32,8 +33,9 @@ main {
 /* -- Text -- */
 
 h1 {
-	font-size: clamp(1rem, 2vw, 1.25rem);
-	font-weight: 500;
+	font-size: clamp(1rem, 2vw, 3rem);
+	font-weight: 400;
+	color:  var(--clr-neutral);
 }
 
 h2 {
@@ -41,7 +43,7 @@ h2 {
 	justify-content: flex-start;
 	align-items: flex-end;
 
-	margin: 0.375em 0;
+	margin: 2em 0;
 
 	font-weight: 500;
 	font-size: clamp(0.95rem, 2vw, 1.10rem);
@@ -215,7 +217,7 @@ small {
 }
 
 .exchange__header--account button:hover {
-	background: var(--clr-blue);
+	background: var(--clr-green);
 	border: none;
 }
 
@@ -316,7 +318,7 @@ small {
 
 .exchange__transactions::-webkit-scrollbar,
 .exchange__trades::-webkit-scrollbar {
-	background: var(--clr-blue);
+	background: var(--clr-green);
 	width: 4px;
 }
 
@@ -369,6 +371,8 @@ small {
 	width: 35px;
 	height: auto;
 	margin: 0 0.5em 0 0;
+
+
 }
 
 .identicon {
@@ -408,9 +412,9 @@ hr {
 .button,
 .button--sm {
 	background: transparent;
-	color: var(--clr-blue);
+	color: var(--clr-green);
 
-	border: 1.5px solid var(--clr-blue);
+	border: 1.5px solid var(--clr-green);
 	border-radius: 10px;
 
 	width: 100%;
@@ -468,7 +472,7 @@ hr {
 }
 
 .button--filled {
-	background: var(--clr-blue);
+	background: var(--clr-green);
 	color: var(--clr-text);
 	border: 1px solid transparent;
 }
@@ -537,7 +541,7 @@ input::placeholder {
 }
 
 .tab--active {
-	background: var(--clr-blue);
+	background: var(--clr-green);
 }
 
 /* ------------------------------------------------------ */
@@ -610,7 +614,7 @@ table td {
 }
 
 .alert a {
-	color: var(--clr-blue);
+	color: var(--clr-green);
 	text-decoration: none;
 	margin: 0.25em;
 }

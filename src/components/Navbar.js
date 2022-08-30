@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Blockies from 'react-blockies'
 
 import logo from '../assets/logo.png'
+import logo01 from '../assets/logo01.png'
 import eth from '../assets/eth.svg'
 
 import { loadAccount } from '../store/interactions'
@@ -29,8 +30,9 @@ const Navbar = () => {
   return(
     <div className='exchange__header grid'>
       <div className='exchange__header--brand flex'>
-      	<img src={logo} className="logo" alt="DAPP logo"></img>
-      	<h1>BTX Token Exchange</h1>
+      	<img style={{ width: 60, height: 60 }} src={logo} className="logo" alt="BTX logo"></img>
+        <img style={{ width: 75, height: 55 }} src={logo01} className="logo" alt="BTX logo"></img>
+      	<h1>Token Exchainge</h1>
       </div>
 
       <div className='exchange__header--networks flex'>
@@ -48,9 +50,9 @@ const Navbar = () => {
 
       <div className='exchange__header--account flex'>
       {balance ? (
-        <p><small>My balance</small>{Number(balance).toFixed(4)}</p>
+        <p><small>My Balance</small>{Number(balance).toFixed(4)}</p>
       ):(
-        <p><small>My balance</small>∞ ETH</p>
+        <p><small>My Balance</small>(Φr²) ETH</p>
       )}
         {account ? (
           <a
@@ -63,16 +65,15 @@ const Navbar = () => {
               seed={account}
               size={10}
               scale={3}
-              color="#2187D0"s
-              bgColor="#F1F2F9"
-              spotColor="#767F92"
+              color="#689C46"
+              bgColor="#121A29"
+              spotColor="#EBC119"
               className="identicon"
             />
           </a>
-        ):(
-          <button className="button" onClick={connectHandler}>Connect myWallet</button>
+        ) : (
+          <button className="button" onClick={connectHandler}>Connect</button>
         )}
-        
       </div>
     </div>
   )
