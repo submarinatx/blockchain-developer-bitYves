@@ -49,12 +49,13 @@ describe('Exchange', () => {
 		let amount = tokens(10)
 
 		describe('Success', () => {
-
 			beforeEach(async () => {
 
+					// approve token
 				transaction = await token1.connect(user1).approve(exchange.address, amount)
 				result = await transaction.wait()
 
+					// deposit token
 				transaction = await exchange.connect(user1).depositToken(token1.address, amount)
 				result = await transaction.wait()
 			})
@@ -303,7 +304,7 @@ describe('Exchange', () => {
 			describe('Failure', () => {
 				it('rejects invalid order ids', async () => {
 					const invalidOrderId = 99999
-					await expect(exchange.connect(user2).fillOrder(invalidOrderId)).to.be.reverted
+					await expect(exchange.connect(user2).Carder(invalidOrderId)).to.be.reverted
 				})
 
 				it('rejects already filled orders', async () => {

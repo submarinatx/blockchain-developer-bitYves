@@ -324,7 +324,7 @@ small {
 
 .exchange__transactions::-webkit-scrollbar-thumb,
 .exchange__trades::-webkit-scrollbar-thumb {
-	background: var(--clr-white);
+	background: var(--clr-yellow);
 	border-radius: 15px;
 }
 
@@ -462,8 +462,8 @@ hr {
 
 .button:hover,
 .button--sm:hover {
-	color: var(--clr-white);
-	border: 1.5px solid var(--clr-white);
+	color: var(--clr-yellow);
+	border: 1.5px solid var(--clr-yellow);
 }
 
 .button:hover span::after {
@@ -591,7 +591,7 @@ table td {
 /* -- Alert -- */
 
 .alert {
-	background: #222D41;
+	background: #;
 
 	height: 100px;
 	width: 300px;

@@ -50,7 +50,7 @@ function App() {
 
   useEffect(() => {
     loadBlockchainData()
- })
+  })
 
   return (
     <div>
