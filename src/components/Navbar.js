@@ -49,11 +49,11 @@ const Navbar = () => {
       </div>
 
       <div className='exchange__header--account flex'>
-      {balance ? (
-        <p><small>My Balance</small>{Number(balance).toFixed(4)}</p>
-      ):(
-        <p><small>My Balance</small>(Φr²) ETH</p>
-      )}
+        {balance ? (
+          <p><small>My Balance</small>{Number(balance).toFixed(4)}</p>
+        ) : (
+          <p><small>My Balance</small>(Φr²) ETH</p>
+        )}
         {account ? (
           <a
             href={config[chainId] ? `${config[chainId].explorerURL}/address/${account}` : `#`}

@@ -304,7 +304,7 @@ describe('Exchange', () => {
 			describe('Failure', () => {
 				it('rejects invalid order ids', async () => {
 					const invalidOrderId = 99999
-					await expect(exchange.connect(user2).Carder(invalidOrderId)).to.be.reverted
+					await expect(exchange.connect(user2).fillOrder(invalidOrderId)).to.be.reverted
 				})
 
 				it('rejects already filled orders', async () => {

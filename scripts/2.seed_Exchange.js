@@ -143,13 +143,13 @@ async function main() {
 		// wait 1 sec..
 		await wait(1)
 	}
-	// user2 makes 10
+		// user2 makes 10
 	for(let i = 1; i <= 10; i ++) {
 		transaction = await exchange.connect(user2).makeOrder(Btx.address, tokens(10), ETHx.address, tokens(10 * i))
 		result = await transaction.wait()
 		console.log(`Made order from ${user2.address}`)
 		
-|// wait 1 sec..
+		// wait 1 sec..
 		await wait(1)
 	}
 }

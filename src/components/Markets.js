@@ -8,8 +8,8 @@ const Markets = () => {
 
   const dispatch = useDispatch()
 
-  const marketHandler = async (event) => {
-  	loadTokens(provider, (event.target.value).split(','), dispatch)
+  const marketHandler = async (e) => {
+  	loadTokens(provider, (e.target.value).split(','), dispatch)
   }
 
 	return(

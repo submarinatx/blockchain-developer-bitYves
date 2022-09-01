@@ -45,8 +45,8 @@ h2 {
 
 	margin: 2em 0;
 
-	font-weight: 500;
-	font-size: clamp(0.95rem, 2vw, 1.10rem);
+	font-weight: 400;
+	font-size: clamp(0.95rem, 2vw, 1.15rem);
 }
 
 p,
@@ -126,7 +126,7 @@ small {
 
 .exchange__header {
 	background: var(--clr-primary);
-	height: 10vh;
+	height: 13vh;
 
 	position: relative;
 }
@@ -141,13 +141,13 @@ small {
 	color: var(--clr-white);
 	border: none;
 
-	font-weight: 700;
+	font-weight: 600;
 
 	cursor: pointer;
 }
 
 .exchange__header select:focus {
-	background: var(--clr-secondary);
+	background: var(--clr-primary);
 }
 
 .exchange__header--brand {
@@ -200,8 +200,8 @@ small {
 	justify-content: center;
 	align-items: center;
 
-	background: #222D41;
-	border: none;
+	background: var(--clr-primary);
+	border: solid var(--clr-secondary);
 	color: var(--clr-white);
 
 	margin: 0;
@@ -218,7 +218,8 @@ small {
 
 .exchange__header--account button:hover {
 	background: var(--clr-green);
-	border: none;
+	border: solid var(--clr-secondary);
+	color: var(--clr-primary);
 }
 
 .exchange__header--account img {
@@ -251,12 +252,12 @@ small {
 .exchange__markets select {
 	background: var(--clr-primary);
 	color: var(--clr-text);
-	border: none;
+	border: 1px solid var(--clr-neutral);
 
 	width: 100%;
-	padding: 1em;
+	padding: 1.15em;
 
-	font-weight: 700;
+	font-weight: 650;
 
 	cursor: pointer;
 
@@ -324,7 +325,7 @@ small {
 
 .exchange__transactions::-webkit-scrollbar-thumb,
 .exchange__trades::-webkit-scrollbar-thumb {
-	background: var(--clr-yellow);
+	background: var(--clr-white);
 	border-radius: 15px;
 }
 
@@ -370,13 +371,13 @@ small {
 .logo {
 	width: 35px;
 	height: auto;
-	margin: 0 0.5em 0 0;
+	margin: 0 1.5em 0 0;
 
 
 }
 
 .identicon {
-	margin: 0 0 0 0.60em;
+	margin: 0 0 0 0.61em;
 }
 
 /* ------------------------------------------------------ */
@@ -412,16 +413,16 @@ hr {
 .button,
 .button--sm {
 	background: transparent;
-	color: var(--clr-green);
+	color: var(--clr-blue);
 
-	border: 1.5px solid var(--clr-green);
+	border: 1.5px solid var(--clr-blue);
 	border-radius: 10px;
 
 	width: 100%;
 	margin: 0.75em auto;
-	padding: 1.15em;
+	padding: 1em;
 
-	font-weight: 700;
+	font-weight: 600;
 
 	cursor: pointer;
 	position: relative;
@@ -462,26 +463,29 @@ hr {
 
 .button:hover,
 .button--sm:hover {
-	color: var(--clr-yellow);
-	border: 1.5px solid var(--clr-yellow);
+	color: var(--clr-green);
+	border: 1.8px solid var(--clr-green);
 }
 
 .button:hover span::after {
 	background-image: url('./assets/right-arrow-white.svg');
-	right: -18px;
+	right: -16px;
 }
 
 .button--filled {
-	background: var(--clr-green);
-	color: var(--clr-text);
+	background: var(--clr-secondary);
+	color: var(--clr-green);
 	border: 1px solid transparent;
 }
 
 .button--filled span::after {
 	background-image: url('./assets/right-arrow-white.svg');
+	right: -12px;
 }
 
 .button--filled:hover {
+	background: var(--clr-green);
+	color: var(--clr-secondary);
 	border: 1px solid transparent;
 }
 
@@ -521,13 +525,13 @@ input::placeholder {
 
 .tab {
 	background: transparent;
-	color: var(--clr-text);
+	color: var(--clr-green);
 
 	min-width: 6em;
 
 	padding: 0.50em 0.75em;
 
-	border: none;
+	border: solid var(--clr-primary);
 	border-radius: 8px;
 
 	font-family: "DM Sans";
@@ -542,6 +546,9 @@ input::placeholder {
 
 .tab--active {
 	background: var(--clr-green);
+	color: var(--clr-primary);
+
+	border:  solid var(--clr-primary);
 }
 
 /* ------------------------------------------------------ */
@@ -591,7 +598,7 @@ table td {
 /* -- Alert -- */
 
 .alert {
-	background: #;
+	background: #222D41;
 
 	height: 100px;
 	width: 300px;

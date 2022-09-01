@@ -72,6 +72,7 @@ const Balance = () => {
       transferTokens(provider, exchange, 'Withdraw', token, token02TransferAmount, dispatch)
       setToken02TransferAmount(0)
     }
+    console.log("Withdrawing Tokens..")
   }
 
   useEffect(() => {
@@ -110,9 +111,9 @@ const Balance = () => {
 
           <button className='button' type='submit'>
             {isDeposit ? (
-              <span>Deposit</span>
+                <span>Deposit</span>
             ) : (
-              <span>Withdraw</span>
+                <span>Withdraw</span>
             )}
           </button>
         </form>
@@ -121,6 +122,7 @@ const Balance = () => {
       <hr />
 
       {/* Deposit/Withdraw Component 2 (ETHx) */}
+
       <div className='exchange__transfers--form'>
         <div className='flex-between'>
           <p><small>Token</small><br /><img src={eth} alt="Token logo" />{symbols && symbols[1]}</p>
@@ -139,9 +141,9 @@ const Balance = () => {
 
           <button className='button' type='submit'>
             {isDeposit ? (
-              <span>Deposit</span>
+                <span>Deposit</span>
             ) : (
-              <span>Withdraw</span>
+                <span>Withdraw</span>
             )}
           </button>
         </form>

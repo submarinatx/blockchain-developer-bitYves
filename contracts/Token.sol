@@ -53,7 +53,6 @@ contract Token {
 	) internal {
 		require(_to != address(0));
 
-
 		balanceOf[_from] = balanceOf[_from] - _value;
 		balanceOf[_to] = balanceOf[_to] + _value;
 
@@ -76,7 +75,8 @@ contract Token {
 		address _to, 
 		uint256 _value
 		)
-	    public returns (bool success)
+	    public
+	    returns (bool success)
 	{
 		require(_value <= balanceOf[_from]);
 		require(_value <= allowance[_from][msg.sender]);

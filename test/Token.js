@@ -83,7 +83,6 @@ describe('Token', () => {
 				const amount = tokens(100)
 				await expect(token.connect(deployer).transfer('0x0000000000000000000000000000000000000000', amount)).to.be.reverted
 			})
-
 	    })
 	})
 
@@ -159,13 +158,8 @@ describe('Token', () => {
 		})
 
 		describe('Failure', async () => {
-			it('rejects insufficient amounts', async () => {
 				const invalidAmount = tokens(100000000)
 				await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
-			})
-
-			const invalidAmount = tokens(100000000)
-			await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
 		})
 	})
 })

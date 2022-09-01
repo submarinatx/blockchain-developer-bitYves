@@ -5,25 +5,21 @@ export const provider = (state = {}, action) => {
 				...state,
 				connection: action.connection
 			}
-
 		case 'NETWORK_LOADED':
 			return {
 				...state,
 				chainId: action.chainId
 			}
-
 		case 'ACCOUNT_LOADED':
 			return {
 				...state,
 				account: action.account
 			}
-
 		case 'ETHER_BALANCE_LOADED':
 			return {
 				...state,
 				balance: action.balance
 			}
-
 
 		default:
 			return state
@@ -45,13 +41,12 @@ export const tokens = (state = DEFAULT_TOKENS_STATE, action) => {
 				contracts: [action.token],
 				symbols: [action.symbol]
 			}
-
 		case 'TOKEN_01_BALANCE_LOADED':
 			return {
 				...state,
 				balances: [action.balance]
 			}
-
+			
 		case 'TOKEN_02_LOADED':
 			return {
 				...state,
@@ -77,10 +72,16 @@ const DEFAULT_EXCHANGE_STATE = {
 	transaction: {
 		isSuccessful: false
 	},
+	allOrders: {
+		loaded: false,
+		data: []
+	},
 	events: []
 }
 
 export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
+	let index, data
+
 	switch (action.type) {
 		case 'EXCHANGE_LOADED':
 			return {
@@ -109,38 +110,89 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
 			//---------------------------------------------------------------------
 
 		case 'TRANSFER_REQUEST':
-		return {
-			...state,
-			transaction: {
-				transactionType: 'Transfer',
-				isPending: true,
-				isSuccessful: false
-			},
-			transferInProgress: true
-		}
+			return {
+				...state,
+				transaction: {
+					transactionType: 'Transfer',
+					isPending: true,
+					isSuccessful: false
+				},
+				transferInProgress: true
+			}
 		case 'TRANSFER_SUCCESS':
-		return {
-			...state,
-			transaction: {
-				transactionType: 'Transfer',
-				isPending: false,
-				isSuccessful: true
-			},
-			transferInProgress: false,
-			events: [action.event, ...state.events]
-		}
+			return {
+				...state,
+				transaction: {
+					transactionType: 'Transfer',
+					isPending: false,
+					isSuccessful: true
+				},
+				transferInProgress: false,
+				events: [action.event, ...state.events]
+			}
 		case 'TRANSFER_FAIL':
-		return {
-			...state,
-			transaction: {
-				transactionType: 'Transfer',
-				isPending: false,
-				isSuccessful: false,
-				isError: true
-			},
-			transferInProgress: false
-		}
-		default:
-			return state
+			return {
+				...state,
+				transaction: {
+					transactionType: 'Transfer',
+					isPending: false,
+					isSuccessful: false,
+					isError: true
+
+				},
+				transferInProgress: false
+			}
+
+			//--------------------------------------------------------------------
+			// making order cases
+			//---------------------------------------------------------------------
+
+		case 'NEW_ORDER_REQUEST':
+			return {
+				...state,
+				transaction: {
+					transactionType: 'New Order',
+					isPending: true,
+					isSuccessful: false
+				},
+			}
+
+		case 'NEW_ORDER_SUCCESS':
+				// prevent duplicate orders
+			index = state.allOrders.data.findIndex(order => order.id === action.order.id)
+			
+			if(index === -1) {
+				data = [...state.allOrders.data, action.order]
+			} else {
+				data = state.allOrders.data
+			}
+
+			return {
+				...state,
+				allOrders: {
+					...state.allOrders,
+					data
+				},
+				transaction: {
+					transactionType: 'NewOrder',
+					isPending: false,
+					isSuccessful: true
+				},
+				events: [action.events, ...state.events]
+			}
+
+		case 'NEW_ORDER_FAIL':
+			return {
+				...state,
+				transaction: {
+					transactionType: 'New Order',
+					isPending: false,
+					isSuccessful: false,
+					isError: true
+				},
+			}
+			
+			default:
+				return state
 	}
 }
