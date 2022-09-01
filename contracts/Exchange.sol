@@ -194,7 +194,7 @@ contract Exchange {
 			tokens[_tokenGet][msg.sender] - 
 			(_amountGet + _feeAmount);
 
-		tokens[_tokenGet][_user] = tokens[_tokenGet][_user] = _amountGet;
+		tokens[_tokenGet][_user] = tokens[_tokenGet][_user] + _amountGet;
 
 		tokens[_tokenGet][feeAccount] = 
 			tokens[_tokenGet][feeAccount] + 

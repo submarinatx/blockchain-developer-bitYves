@@ -11,10 +11,10 @@ import {
   subscribeToEvents
 } from '../store/interactions';
 
-import Navbar from './Navbar'
-import Markets from './Markets'
-import Balance from './Balance'
-import Order from './Order'
+import Navbar from './Navbar';
+import Markets from './Markets';
+import Balance from './Balance';
+import Order from './Order';
 
 function App() {
   const dispatch = useDispatch()

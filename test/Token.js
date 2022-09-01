@@ -131,7 +131,6 @@ describe('Token', () => {
 
 		describe('Success', () => {
 			beforeEach(async () => {
-				amount = tokens(100)
 				transaction = await token.connect(exchange).transferFrom(deployer.address, receiver.address, amount)
 				result = await transaction.wait()
 			})
@@ -158,8 +157,8 @@ describe('Token', () => {
 		})
 
 		describe('Failure', async () => {
-				const invalidAmount = tokens(100000000)
-				await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
+			const invalidAmount = tokens(100000000)
+			await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
 		})
 	})
 })

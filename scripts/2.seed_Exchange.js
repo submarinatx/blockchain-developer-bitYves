@@ -55,7 +55,7 @@ async function main() {
 	// user1 deposits 10,000 Btx
 	transaction = await exchange.connect(user1).depositToken(Btx.address, amount)
 	await transaction.wait()
-	console.log(`Deposited ${amount} Etherx to ${user1.address}\n`)
+	console.log(`Deposited ${amount} Etherx from ${user1.address}\n`)
 
 	// user2 approves ETHx
 	transaction = await ETHx.connect(user2).approve(exchange.address, amount)
@@ -65,7 +65,7 @@ async function main() {
 	// user2 deposits ETHx
 	transaction = await exchange.connect(user2).depositToken(ETHx.address, amount)
 	await transaction.wait()
-	console.log(`Deposited ${amount} Etherx to ${user2.address}\n`)
+	console.log(`Deposited ${amount} Etherx from ${user2.address}\n`)
 
 	////////////////////////////////////////////////////////////
 	// Seed a Cancelled Order
