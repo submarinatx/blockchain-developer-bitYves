@@ -1,4 +1,4 @@
-import { ethers } from 'ethers'
+import { ethers } from 'ethers';
 import TOKEN_abi from '../abis/Token.json';
 import EXCHANGE_abi from '../abis/Exchange.json';
 

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { makeBuyOrder, makeSellOrder } from '../store/interactions';
 
 const Order = () => {
