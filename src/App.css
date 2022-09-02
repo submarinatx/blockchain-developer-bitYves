@@ -72,7 +72,7 @@ small {
 	align-items: center;
 
 	width: 100%;
-	padding-top: 30px;
+	padding-top: 25px;
 	margin: 0 auto;
 
 	font-size: clamp(1rem, 2vw, 1.25rem);
@@ -281,7 +281,7 @@ small {
 /* CHART COMPONENT */
 
 .exchange__chart {
-	background: var(--clr-secondary);
+	background: var(--clr-primary);
 
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
