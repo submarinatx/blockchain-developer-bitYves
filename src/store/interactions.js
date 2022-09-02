@@ -29,7 +29,7 @@ export const loadAccount = async (provider, dispatch) => {
 
     return account
 }
-
+        
 export const loadTokens = async (provider, addresses, dispatch) => {
     let token, symbol
 
@@ -82,6 +82,28 @@ export const loadBalances = async (exchange, tokens, account, dispatch) => {
 
     balance = ethers.utils.formatUnits(await exchange.balanceOf(tokens[1].address, account), 18)
     dispatch({ type: 'EXCHANGE_TOKEN_02_BALANCE_LOADED', balance })
+}
+
+        // load all orders
+
+export const loadAllOrders = async (provider, exchange, dispatch) => {
+
+    const block = await provider.getBlockNumber()
+
+    const cancelStream = await exchange.queryFilter('Cancel', 0, block)
+    const cancelledOrders = cancelStream.map(event => event.args)
+
+    dispatch({ type: 'CANCELLED_ORDERS_LOADED', cancelledOrders })
+
+    const tradeStream = await exchange.queryFilter('Trade', 0, block)
+    const filledOrders = tradeStream.map(event => event.args)
+
+    dispatch({ type: 'FILLED_ORDERS_LOADED', filledOrders })
+
+    const orderStream = await exchange.queryFilter('Order', 0, block)
+    const allOrders = orderStream.map(event => event.args)
+
+    dispatch({ type: 'ALL_ORDERS_LOADED', allOrders })
 }
 
         //-------------------------------------------------------------
