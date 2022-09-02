@@ -3,13 +3,13 @@ import { get, groupBy, reject, maxBy, minBy } from 'lodash';
 import moment from 'moment'
 import { ethers } from 'ethers';
 
+const GREEN = '#25CE8F'
+const RED = '#F45353'
+
 const tokens = state => get(state, 'tokens.contracts')
 const allOrders = state => get(state, 'exchange.allOrders.data', [])
 const cancelledOrders = state => get(state, 'exchange.cancelledOrders.data', [])
 const filledOrders = state => get(state, 'exchange.filledOrders.data', [])
-
-const GREEN = '#25CE8F'
-const RED = '#F45353'
 
 const openOrders = state => {
 	const all = allOrders(state)
@@ -48,6 +48,69 @@ const decorateOrder = (order, tokens) => {
 		formattedTimestamp: moment.unix(order.timestamp).format('h:mm:ssa d MMM D')
 	})
 }
+
+		// all filled orders
+
+export const filledOrdersSelector = createSelector(
+	filledOrders,
+	tokens,
+	(orders, tokens) => {
+		if (!tokens[0] || !tokens[1]) { return }
+				// filter orders by selected tokens
+		orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
+		orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+				// sort orders by time ascending for price comparison
+		orders = orders.sort((a, b) => a.timestamp - b.timestamp)
+				// decorate orders
+		orders = decorateFilledOrders(orders, tokens)
+
+		orders = orders.sort((a, b) => b.timestamp - a.timestamp)
+
+		console.log(orders)
+
+		return orders
+	}
+)
+
+
+const decorateFilledOrders = (orders, tokens) => {
+				// track previous order to compare history
+	let previousOrder = orders[0]
+
+	return(
+		orders.map((order) => {
+				// decorate each individual order
+			order = decorateOrder(order, tokens)
+			order = decorateFilledOrder(order, previousOrder)
+			previousOrder = order // update the previous order once it's decorated
+			return order
+		})
+	)
+}
+
+const decorateFilledOrder = (order, previousOrder) => {
+
+	return({
+		...order,
+		tokenPriceClass: tokenPriceClass(order.tokenPrice, order.id, previousOrder)
+	})
+
+}
+
+const tokenPriceClass = (tokenPrice, orderId, previousOrder) => {
+			// show green price if only one order exists
+	if (previousOrder.id === orderId) {
+		return GREEN
+	}
+			// show green price if order price higher than previous order
+			// show other color price if order price lower than previous order
+	if (previousOrder.tokenPrice <= tokenPrice) {
+		return GREEN // success
+	} else {
+		return RED // danger
+	}
+}
+
 		// order book
 
 export const orderBookSelector = createSelector(
@@ -55,9 +118,11 @@ export const orderBookSelector = createSelector(
 	tokens,
 	(orders, tokens) => {
 		if (!tokens[0] || !tokens[1]) { return }
-	
+				// filter orders by selected tokens
 		orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
 		orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+				// sort orders by time ascending for price comparison
+		orders = orders.sort((a, b) => a.timestamp - b.timestamp)
 
 		orders = decorateOrderBookOrders(orders, tokens)
 
@@ -80,6 +145,7 @@ export const orderBookSelector = createSelector(
 		return orders
 	}
 )
+
 
 const decorateOrderBookOrders = (orders, tokens) => {
 	return(
