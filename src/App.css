@@ -216,6 +216,7 @@ small {
 	background: var(--clr-yellow);
 	border: solid var(--clr-green);
 	color: var(--clr-secondary);
+	opacity: 75%;
 
 	margin: 1%;
 	border-radius: 5px;
@@ -234,6 +235,7 @@ small {
 	background: var(--clr-green);
 	border: solid var(--clr-yellow);
 	color: var(--clr-primary);
+	opacity: 80%;
 }
 
 .exchange__header--account img {
@@ -437,9 +439,9 @@ hr {
 .button,
 .button--sm {
 	background: transparent;
-	color: var(--clr-green);
+	color: var(--clr-blue);
 
-	border: 1px solid var(--clr-green);
+	border: 1px solid var(--clr-blue);
 	border-radius: 10px;
 
 	width: 100%;
@@ -470,7 +472,7 @@ hr {
 .button span::after {
 	content: '';
 
-	background-image: url('./assets/right-arrow-white.svg');
+	background-image: url('./assets/right-arrow-blue.svg');
 	background-size: contain;
 	background-repeat: no-repeat;
 
@@ -487,29 +489,29 @@ hr {
 
 .button:hover,
 .button--sm:hover {
-	color: var(--clr-blue);
-	border: 1.8px solid var(--clr-blue);
+	color: var(--clr-green);
+	border: 1px solid var(--clr-green);
 }
 
 .button:hover span::after {
-	background-image: url('./assets/right-arrow-blue.svg');
+	background-image: url('./assets/right-arrow-white.svg');
 	right: -16px;
 }
 
 .button--filled {
 	background: var(--clr-green);
-	color: var(--clr-secondary);
+	color: var(--clr-primary);
 	border: 1px solid var(--clr-neutral);
 }
 
 .button--filled span::after {
-	background-image: url('./assets/right-arrow-white.svg');
+	background-image: url('./assets/right-arrow-blue.svg');
 	right: -16px;
 }
 
 .button--filled:hover {
 	background: var(--clr-blue);
-	color: var(--clr-secondary);
+	color: var(--clr-primary);
 	border: 1px solid var(--clr-neutral);
 }
 
@@ -571,7 +573,7 @@ input::placeholder {
 
 .tab--active {
 	background: var(--clr-green);
-	color: var(--clr-secondary);
+	color: var(--clr-primary);
 
 	border: 1px solid var(--clr-neutral);
 }
