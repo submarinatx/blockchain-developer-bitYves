@@ -63,11 +63,11 @@ const Navbar = () => {
             {account.slice(0,8) + '...' + account.slice(38,42)}
             <Blockies
               seed={account}
-              size={10}
+              size={8}
               scale={3}
               color="#689C46"
-              bgColor="#121A29"
-              spotColor="#EBC119"
+              bgColor="#EBC119"
+              spotColor="#0D121D"
               className="identicon"
             />
           </a>

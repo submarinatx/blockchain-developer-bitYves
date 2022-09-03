@@ -3,7 +3,7 @@ import { get, groupBy, reject, maxBy, minBy } from 'lodash';
 import moment from 'moment'
 import { ethers } from 'ethers';
 
-const GREEN = '#25CE8F'
+const GREEN = '#689C46'
 
 const RED = '#F45353'
 

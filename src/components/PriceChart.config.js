@@ -41,7 +41,7 @@ export const options = {
   plotOptions: {
     candlestick: {
       colors: {
-        upward: '#25CE8F',
+        upward: '#689C46',
         downward: '#F45353'
       }
     }

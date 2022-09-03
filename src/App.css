@@ -143,7 +143,7 @@ small {
 .exchange__chart select {
 	background: transparent;
 	color: var(--clr-white);
-	border: none;
+	border: var(--clr-green);
 
 	font-weight: 600;
 
@@ -166,27 +166,36 @@ small {
 }
 
 .exchange__header--networks {
+	background: var(--clr-primary);
+	border: var(--clr-secondary);
+	border-radius: 10px;
+
 	grid-column-start: 12;
 	grid-column-end: 13;
 
-	grid-row: 2;
+	grid-row: 3;
 
 	position: absolute;
-	top: 24px;
-	right: 64px;
+	top: 50%px;
+	right: 50%px;
 	transform: translate(0, -50%);
+
+	width:  191px;
+	height: 45px;
 }
 
 .exchange__header--account {
-	background: var(--clr-secondary);
+	background: var(--clr-primary);
+	color: var(--clr-text);
+	border: 4px solid var(--clr-secondary);
 
 	position: absolute;
 	top: 50%;
 	right: 24px;
 	transform: translate(0, -50%);
 
-	width: 400px;
-	height: 48px;
+	width: 500px;
+	height: 45px;
 
 	border-radius: 10px;
 
@@ -204,17 +213,18 @@ small {
 	justify-content: center;
 	align-items: center;
 
-	background: var(--clr-primary);
-	border: solid var(--clr-secondary);
-	color: var(--clr-white);
+	background: var(--clr-yellow);
+	border: solid var(--clr-green);
+	color: var(--clr-secondary);
 
-	margin: 0;
-	border-radius: 10px;
+	margin: 1%;
+	border-radius: 5px;
 
-	width: 182px;
-	height: 48px;
+	width: 191px;
+	height: 27.8px;
 
 	font-size: 16px;
+	font-weight: 600;
 	text-decoration: none;
 
 	transition: all 250ms ease;
@@ -222,7 +232,7 @@ small {
 
 .exchange__header--account button:hover {
 	background: var(--clr-green);
-	border: solid var(--clr-secondary);
+	border: solid var(--clr-yellow);
 	color: var(--clr-primary);
 }
 
@@ -257,6 +267,7 @@ small {
 	background: var(--clr-primary);
 	color: var(--clr-text);
 	border: 1px solid var(--clr-neutral);
+	border-radius: 5px;
 
 	width: 100%;
 	padding: 1.15em;
@@ -286,6 +297,8 @@ small {
 
 .exchange__chart {
 	background: var(--clr-primary);
+	border:  solid var(--clr-secondary);
+	border-radius: 10px;
 
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
@@ -308,7 +321,9 @@ small {
 /* TRANSACTIONS COMPONENT */
 
 .exchange__transactions {
-	background: var(--clr-secondary);
+	background: var(--clr-primary);
+	border: solid var(--clr-secondary);
+	border-radius: 10px;
 
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
@@ -323,21 +338,23 @@ small {
 
 .exchange__transactions::-webkit-scrollbar,
 .exchange__trades::-webkit-scrollbar {
-	background: var(--clr-green);
-	width: 4px;
+	background: var(--clr-secondary);
+	width: 6px;
 }
 
 .exchange__transactions::-webkit-scrollbar-thumb,
 .exchange__trades::-webkit-scrollbar-thumb {
-	background: var(--clr-white);
-	border-radius: 15px;
+	background: var(--clr-green);
+	border-radius: 8px;
 }
 
 /* ------------------------------------------------------ */
 /* TRADES COMPONENT */
 
 .exchange__trades {
-	background: var(--clr-secondary);
+	background: var(--clr-primary);
+	border:  solid var(--clr-secondary);
+	border-radius: 10px;
 
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
@@ -354,7 +371,9 @@ small {
 /* ORDERBOOK COMPONENT */
 
 .exchange__orderbook {
-	background: var(--clr-secondary);
+	background: var(--clr-primary);
+	border:  solid var(--clr-secondary);
+	border-radius: 10px;
 
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
@@ -366,6 +385,7 @@ small {
 .exchange__orderbook--sell tbody tr:hover,
 .exchange__orderbook--buy tbody tr:hover {
 	background: var(--clr-primary);
+	border-radius: 10px;
 	cursor: pointer;
 }
 
@@ -417,9 +437,9 @@ hr {
 .button,
 .button--sm {
 	background: transparent;
-	color: var(--clr-blue);
+	color: var(--clr-green);
 
-	border: 1.5px solid var(--clr-blue);
+	border: 1px solid var(--clr-green);
 	border-radius: 10px;
 
 	width: 100%;
@@ -450,7 +470,7 @@ hr {
 .button span::after {
 	content: '';
 
-	background-image: url('./assets/right-arrow-blue.svg');
+	background-image: url('./assets/right-arrow-white.svg');
 	background-size: contain;
 	background-repeat: no-repeat;
 
@@ -467,30 +487,30 @@ hr {
 
 .button:hover,
 .button--sm:hover {
-	color: var(--clr-green);
-	border: 1.8px solid var(--clr-green);
+	color: var(--clr-blue);
+	border: 1.8px solid var(--clr-blue);
 }
 
 .button:hover span::after {
-	background-image: url('./assets/right-arrow-white.svg');
+	background-image: url('./assets/right-arrow-blue.svg');
 	right: -16px;
 }
 
 .button--filled {
-	background: var(--clr-secondary);
-	color: var(--clr-green);
-	border: 1px solid transparent;
+	background: var(--clr-green);
+	color: var(--clr-secondary);
+	border: 1px solid var(--clr-neutral);
 }
 
 .button--filled span::after {
 	background-image: url('./assets/right-arrow-white.svg');
-	right: -12px;
+	right: -16px;
 }
 
 .button--filled:hover {
-	background: var(--clr-green);
+	background: var(--clr-blue);
 	color: var(--clr-secondary);
-	border: 1px solid transparent;
+	border: 1px solid var(--clr-neutral);
 }
 
 /* ------------------------------------------------------ */
@@ -522,21 +542,22 @@ input::placeholder {
 /* -- Tabs & Tab -- */
 
 .tabs {
-	background: var(--clr-primary);
+	background: var(--clr-secondary);
+	border: 1px solid var(--clr-primary);
 	border-radius: 10px;
 	padding: 0.20em;
 }
 
 .tab {
 	background: transparent;
-	color: var(--clr-green);
+	color: var(--clr-neutral);
 
 	min-width: 6em;
 
 	padding: 0.50em 0.75em;
 
-	border: solid var(--clr-primary);
-	border-radius: 8px;
+	border: 1px solid var(--clr-secondary);
+	border-radius: 10px;
 
 	font-family: "DM Sans";
 	font-weight: 500;
@@ -550,9 +571,9 @@ input::placeholder {
 
 .tab--active {
 	background: var(--clr-green);
-	color: var(--clr-primary);
+	color: var(--clr-secondary);
 
-	border:  solid var(--clr-primary);
+	border: 1px solid var(--clr-neutral);
 }
 
 /* ------------------------------------------------------ */
