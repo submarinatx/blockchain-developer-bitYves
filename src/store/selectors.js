@@ -4,10 +4,12 @@ import moment from 'moment'
 import { ethers } from 'ethers';
 
 const GREEN = '#25CE8F'
+
 const RED = '#F45353'
 
 const account = state => get(state, 'provider.account')
 const tokens = state => get(state, 'tokens.contracts')
+
 const allOrders = state => get(state, 'exchange.allOrders.data', [])
 const cancelledOrders = state => get(state, 'exchange.cancelledOrders.data', [])
 const filledOrders = state => get(state, 'exchange.filledOrders.data', [])
@@ -26,6 +28,7 @@ const openOrders = state => {
 	return openOrders
 }
 
+			//----------------------------------------------------------------------------------------------
 			// my open orders
 
 export const myOpenOrdersSelector = createSelector(
@@ -33,15 +36,18 @@ export const myOpenOrdersSelector = createSelector(
 	tokens,
 	openOrders,
 	(account, tokens, orders) => {
-
 		if (!tokens[0] || !tokens[1]) { return }
+
 				// filter orders created by current account
 		orders = orders.filter((o) => o.user === account)
+
 				// filter orders by selected tokens
 		orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
 		orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+
 				// decorate orders - add display attributes
 		orders = decorateMyOpenOrders(orders, tokens)
+
 				// sort orders by date descending
 		orders = orders.sort((a, b) => b.timestamp - a.timestamp)
 
@@ -74,12 +80,14 @@ const decorateMyOpenOrder = (order, tokens) => {
 const decorateOrder = (order, tokens) => {
 	let token0Amount, token1Amount
 
+			// note: BTX should be considered token0, ETHx is considered token1
+			// example: giving ETHx in exchange for BTX
 	if (order.tokenGive === tokens[1].address) {
-		token0Amount = order.amountGive
-		token1Amount = order.amountGet
+		token0Amount = order.amountGive // the amount of BTX we are giving..
+		token1Amount = order.amountGet // the amount of ETHx we want..
 	} else {
-		token0Amount = order.amountGet
-		token1Amount = order.amountGive
+		token0Amount = order.amountGet // the amount of BTX we want..
+		token1Amount = order.amountGive // the amount of ETHx we are giving..
 	}
 			// calculate token price to 5 decimal places
 	const precision = 100000
@@ -88,13 +96,14 @@ const decorateOrder = (order, tokens) => {
 	 
 	return ({
 		...order,
-		token0Amount: ethers.utils.formatUnits(token0Amount, "ether"),
 		token1Amount: ethers.utils.formatUnits(token1Amount, "ether"),
+		token0Amount: ethers.utils.formatUnits(token0Amount, "ether"),
 		tokenPrice,
 		formattedTimestamp: moment.unix(order.timestamp).format('h:mm:ssa d MMM D')
 	})
 }
 
+		//-------------------------------------------------------
 		// all filled orders
 
 export const filledOrdersSelector = createSelector(
@@ -102,14 +111,18 @@ export const filledOrdersSelector = createSelector(
 	tokens,
 	(orders, tokens) => {
 		if (!tokens[0] || !tokens[1]) { return }
+
 				// filter orders by selected tokens
 		orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
 		orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+
 				// sort orders by time ascending for price comparison
 		orders = orders.sort((a, b) => a.timestamp - b.timestamp)
-				// decorate orders
+
+				// decorate the orders
 		orders = decorateFilledOrders(orders, tokens)
 
+				// sort orders by date descending for display
 		orders = orders.sort((a, b) => b.timestamp - a.timestamp)
 
 		return orders
@@ -153,6 +166,61 @@ const tokenPriceClass = (tokenPrice, orderId, previousOrder) => {
 	} else {
 		return RED // danger
 	}
+}
+
+		//----------------------------------------------------------
+		// my filled orders 
+
+export const myFilledOrdersSelector = createSelector(
+	account,
+	tokens,
+	filledOrders,
+	(account, tokens, orders) => {
+		if (!tokens[0] || !tokens[1]) { return }
+
+				// find our orders
+		orders = orders.filter((o) => o.user === account || o.creator === account)
+
+				// filter orders for current trading pair
+		orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
+		orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+
+				// sort orders by date descending
+		orders = orders.sort((a, b) => b.timestamp - a.timestamp)
+
+				// decorate orders - add display attributes
+		orders = decorateMyFilledOrders(orders, account, tokens)
+
+		return orders
+	}
+)
+
+const decorateMyFilledOrders = (orders, account, tokens) => {
+	return(
+		orders.map((order) => {
+			order = decorateOrder(order, tokens)
+			order = decorateMyFilledOrder(order, account, tokens)
+			return(order)
+		})
+	)
+}
+
+const decorateMyFilledOrder = (order, account, tokens) => {
+	const myOrder = order.creator === account
+
+	let orderType
+	if(myOrder) {
+		orderType = order.tokenGive === tokens[1].address ? 'buy' : 'sell'
+	} else {
+		orderType = order.tokenGive === tokens[1].address ? 'sell' : 'buy'	
+	}
+
+	return({
+		...order,
+		orderType,
+		orderClass: (orderType === 'buy' ? GREEN : RED),
+		orderSign: (orderType === 'buy' ? '+' : '-')
+	})
 }
 
 		// order book
