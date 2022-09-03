@@ -31,7 +31,7 @@ const Trades = () => {
 
             {filledOrders && filledOrders.map((order, index) => {
               return(
-                <tr>
+                <tr key={index}>
                   <td>{order.formattedTimestamp}</td>
                   <td style={{ color: `${order.tokenPriceClass}` }}>{order.token0Amount}</td>
                   <td>{order.tokenPrice}</td>
