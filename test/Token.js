@@ -157,6 +157,7 @@ describe('Token', () => {
 		})
 
 		describe('Failure', async () => {
+				// attempt to transfer to many tokens
 			const invalidAmount = tokens(100000000)
 			await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
 		})

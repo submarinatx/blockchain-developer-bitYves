@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { myEventsSelector } from '../store/selectors';
 import config from '../config.json';
@@ -6,6 +6,7 @@ import config from '../config.json';
 const Alert = () => {
 
   const alertRef = useRef(null)
+
   const network = useSelector(state => state.provider.network)
   const account = useSelector(state => state.provider.account)
   const isPending = useSelector(state => state.exchange.transaction.isPending)
@@ -17,17 +18,17 @@ const Alert = () => {
   }
 
   useEffect(() => {
-    if((isPending || isError) && account) {
+    if((events[0] || isPending || isError) && account) {
       alertRef.current.className = 'alert'
     }
-  }, [isPending, isError, account])
+  }, [events, isPending, isError, account])
 
   return (
     <div>
         {isPending ? (
 
           <div className="alert alert--remove" onClick={removeHandler} ref={alertRef}>
-            <h3>'Transaction Procesing..'</h3>
+            <h3>Wait a moment..</h3>
           </div>
 
         ) : isError ? (
@@ -45,9 +46,10 @@ const Alert = () => {
                 target='_blank'
                 rel='noreferrer'
               >
-                {events[0].transactionHash.slice(0, 5) + '...' + events[0].transactionHash.slice(60, 66)}
+                {events[0].transactionHash.slice(0, 5) + '...' + events[0].transactionHash.slice(58, 66)}
               </a>
           </div>
+          
         ) : (
           <div className="alert alert--remove" onClick={removeHandler} ref={alertRef}></div>
         )}

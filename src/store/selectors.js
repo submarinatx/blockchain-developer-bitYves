@@ -248,22 +248,20 @@ export const orderBookSelector = createSelector(
 				// filter orders by selected tokens
 		orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
 		orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
-				// sort orders by time ascending for price comparison
-		orders = orders.sort((a, b) => a.timestamp - b.timestamp)
-
+				// decorate orders
 		orders = decorateOrderBookOrders(orders, tokens)
-
+				// group orders by "orderType"
 		orders = groupBy(orders, 'orderType')
-
+				// fetch buy orders
 		const buyOrders = get(orders, 'buy', [])
-
+				// sort buy orders by token price
 		orders = {
 			...orders,
 			buyOrders: buyOrders.sort((a, b) => b.tokenPrice - a.tokenPrice)
 		}
-
+				// fetch sell orders
 		const sellOrders = get(orders, 'sell', [])
-
+				// sort sell orders by token price
 		orders = {
 			...orders,
 			sellOrders: sellOrders.sort((a, b) => b.tokenPrice - a.tokenPrice)
@@ -272,7 +270,6 @@ export const orderBookSelector = createSelector(
 		return orders
 	}
 )
-
 
 const decorateOrderBookOrders = (orders, tokens) => {
 	return(
@@ -316,9 +313,9 @@ export const priceChartSelector = createSelector(
 			// get last 2 orders for final price & price change
 		let secondLastOrder, lastOrder
 		[secondLastOrder, lastOrder] = orders.slice(orders.length - 2, orders.length)
-
+			// get last order price
 		const lastPrice = get(lastOrder, 'tokenPrice', 0)
-
+			// get second last order price
 		const secondLastPrice = get(secondLastOrder, 'tokenPrice', 0)
 
 		return({

@@ -94,22 +94,28 @@ export const loadBalances = async (exchange, tokens, account, dispatch) => {
     dispatch({ type: 'EXCHANGE_TOKEN_02_BALANCE_LOADED', balance })
 }
 
+        //--------------------------------------------------
         // load all orders
+        //--------------------------------------------------
 
 export const loadAllOrders = async (provider, exchange, dispatch) => {
 
     const block = await provider.getBlockNumber()
+
+            // fetch cancelled orders
 
     const cancelStream = await exchange.queryFilter('Cancel', 0, block)
     const cancelledOrders = cancelStream.map(event => event.args)
 
     dispatch({ type: 'CANCELLED_ORDERS_LOADED', cancelledOrders })
 
+            // fetch filled orders
     const tradeStream = await exchange.queryFilter('Trade', 0, block)
     const filledOrders = tradeStream.map(event => event.args)
 
     dispatch({ type: 'FILLED_ORDERS_LOADED', filledOrders })
 
+            // fetch all orders
     const orderStream = await exchange.queryFilter('Order', 0, block)
     const allOrders = orderStream.map(event => event.args)
 
@@ -133,7 +139,6 @@ export const transferTokens = async (provider, exchange, transferType, token, am
             transaction = await token.connect(signer).approve(exchange.address, amountToTransfer)
             await transaction.wait()
             transaction = await exchange.connect(signer).depositToken(token.address, amountToTransfer)
-            await transaction.wait()
         } else {
             transaction = await exchange.connect(signer).withdrawToken(token.address, amountToTransfer)
         }
@@ -144,13 +149,11 @@ export const transferTokens = async (provider, exchange, transferType, token, am
         dispatch({ type: 'TRANSFER_FAIL' })
     } 
 }
-
         //-------------------------------------------------------------
         // orders (buy & sell)
         //---------------------------------------------------------------
 
 export const makeBuyOrder = async (provider, exchange, tokens, order, dispatch) => {
-
     const tokenGet = tokens[0].address
     const amountGet = ethers.utils.parseUnits(order.amount, 18)
     const tokenGive = tokens[1].address
@@ -168,7 +171,6 @@ export const makeBuyOrder = async (provider, exchange, tokens, order, dispatch) 
 }
 
 export const makeSellOrder = async (provider, exchange, tokens, order, dispatch) => {
-
     const tokenGet = tokens[1].address
     const amountGet = ethers.utils.parseUnits((order.amount * order.price).toString(), 18)
     const tokenGive = tokens[0].address
@@ -204,8 +206,7 @@ export const cancelOrder = async (provider, exchange, order, dispatch) => {
                 //-----------------------
                 // fill order
 
-export const fillOrder = async (provider, exchange, order, dispatch) => {
-    
+export const fillOrder = async (provider, exchange, order, dispatch) => {    
     dispatch({ type: 'ORDER_FILL_REQUEST' })
 
     try {    
@@ -216,4 +217,3 @@ export const fillOrder = async (provider, exchange, order, dispatch) => {
         dispatch({ type: 'ORDER_FILL_FAIL' })
     }
 }
-

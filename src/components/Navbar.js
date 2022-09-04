@@ -20,10 +20,10 @@ const Navbar = () => {
     await loadAccount(provider, dispatch)
   }
 
-  const networkHandler = async (event) => {
+  const networkHandler = async (e) => {
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: event.target.value }]
+      params: [{ chainId: e.target.value }]
     })
   }
 
@@ -52,7 +52,7 @@ const Navbar = () => {
         {balance ? (
           <p><small>My Balance</small>{Number(balance).toFixed(4)}</p>
         ) : (
-          <p><small>My Balance</small>(Φr²) ETH</p>
+          <p><small>My Balance</small>Φ ETH</p>
         )}
         {account ? (
           <a
@@ -79,4 +79,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default Navbar;

@@ -51,6 +51,7 @@ function App() {
     const exchangeConfig = config[chainId].exchange
     const exchange = await loadExchange(provider, exchangeConfig.address, dispatch)
 
+      // fetch all orders: open, filled, cancelled
     loadAllOrders(provider, exchange, dispatch)
 
       // Listen to events
