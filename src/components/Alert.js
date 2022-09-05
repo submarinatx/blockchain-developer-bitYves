@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { myEventsSelector } from '../store/selectors';
 import config from '../config.json';
+import logo from '../assets/logo.png'
 
 const Alert = () => {
 
@@ -28,26 +29,32 @@ const Alert = () => {
         {isPending ? (
 
           <div className="alert alert--remove" onClick={removeHandler} ref={alertRef}>
-            <h3>Wait a moment..</h3>
+            <h3>Transaction Processing..</h3>
+              <img style={{ width: 60, height: 60 }} src={logo} alt="BTX logo"></img>
+              <p><small>Click to cancel</small></p>
           </div>
 
         ) : isError ? (
 
           <div className="alert alert--remove" onClick={removeHandler} ref={alertRef}>
-            <h3>Transaction Will Fail</h3>
+            <img style={{ width: 60, height: 60 }} src={logo} alt="BTX logo"></img>
+            <h3>Transaction Failed.</h3>
+              <p><small>Click to remove</small></p>
           </div>
 
         ) : !isPending && events[0] ? (
 
           <div className="alert alert--remove" onClick={removeHandler} ref={alertRef}>
-            <h3>Transaction Successful</h3>
+            <h3>Transaction Successful.</h3>
+              <img style={{ width: 60, height: 60 }} src={logo} alt="BTX logo"></img>
               <a
                 href={config[network] ? `${config[network].explorerURL}/tx/${events[0].transactionHash}` : '#'}                
                 target='_blank'
                 rel='noreferrer'
               >
-                {events[0].transactionHash.slice(0, 5) + '...' + events[0].transactionHash.slice(58, 66)}
+                {events[0].transactionHash.slice(0, 13) + '...' + events[0].transactionHash.slice(58, 66)}
               </a>
+              <p><small>Click to remove</small></p>
           </div>
           
         ) : (

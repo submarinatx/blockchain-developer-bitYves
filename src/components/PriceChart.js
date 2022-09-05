@@ -40,13 +40,13 @@ const PriceChart = () => {
       </div>
 
       {!account ? (
-        <Banner text={'Please connect with Metamask' } />
+        <Banner text={'Please connect with your Metamask' } />
       ) : (
         <Chart
           type="candlestick"
           options={options}
           series={priceChart ? priceChart.series : defaultSeries}
-          widht="100%"
+          width="100%"
           height="100%"
         />
       )}

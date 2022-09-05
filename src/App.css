@@ -39,8 +39,8 @@ h1 {
 }
 h3 {
 	font-size: clamp(0.95rem, 2vw, 1.6rem);
-	font-weight: 450;
-	color:  var(--clr-neutral);
+	font-weight: 400;
+	color:  var(--clr-gray);
 }
 h2 {
 	display: flex;
@@ -235,7 +235,7 @@ small {
 	background: var(--clr-green);
 	border: solid var(--clr-yellow);
 	color: var(--clr-primary);
-	opacity: 80%;
+	opacity: 75%;
 }
 
 .exchange__header--account img {
@@ -347,7 +347,7 @@ small {
 .exchange__transactions::-webkit-scrollbar-thumb,
 .exchange__trades::-webkit-scrollbar-thumb {
 	background: var(--clr-green);
-	border-radius: 8px;
+	border-radius: 15px;
 }
 
 /* ------------------------------------------------------ */
@@ -625,10 +625,13 @@ table td {
 /* -- Alert -- */
 
 .alert {
-	background: #222D41;
+	background: var(--clr-secondary);
+	border: solid var(--clr-primary);
+	border-radius: 15px;
+	opacity: 75%;
 
-	height: 100px;
-	width: 300px;
+	height: 155px;
+	width: 336px;
 
 	position: fixed;
 	bottom: 1.50em;
@@ -645,11 +648,10 @@ table td {
 	cursor: pointer;
 
 	transition: all 500ms ease;
-	border-radius: 15px;
 }
 
 .alert a {
-	color: var(--clr-blue);
+	color: var(--clr-green);
 	text-decoration: none;
 	margin: 0.25em;
 }

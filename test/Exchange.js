@@ -199,24 +199,24 @@ describe('Exchange', () => {
 		let amount = tokens(1)
 
 		beforeEach(async () => {
-						// user1 deposit tokens
-				transaction = await token1.connect(user1).approve(exchange.address, amount)
-				result = await transaction.wait()
+					// user1 deposit tokens
+			transaction = await token1.connect(user1).approve(exchange.address, amount)
+			result = await transaction.wait()
 
-				transaction = await exchange.connect(user1).depositToken(token1.address, amount)
-				result = await transaction.wait()
-						// give tokens to user2
-				transaction = await token2.connect(deployer).transfer(user2.address, tokens(100))
-				result = await transaction.wait()
-						// user2 deposit tokens
-				transaction = await token2.connect(user2).approve(exchange.address, tokens(2))
-				result = await transaction.wait()
+			transaction = await exchange.connect(user1).depositToken(token1.address, amount)
+			result = await transaction.wait()
+					// give tokens to user2
+			transaction = await token2.connect(deployer).transfer(user2.address, tokens(100))
+			result = await transaction.wait()
+					// user2 deposit tokens
+			transaction = await token2.connect(user2).approve(exchange.address, tokens(2))
+			result = await transaction.wait()
 
-				transaction = await exchange.connect(user2).depositToken(token2.address, tokens(2))
-				result = await transaction.wait()
-						// make an order
-				transaction = await exchange.connect(user1).makeOrder(token2.address, amount, token1.address, amount)
-				result = await transaction.wait()
+			transaction = await exchange.connect(user2).depositToken(token2.address, tokens(2))
+			result = await transaction.wait()
+					// make an order
+			transaction = await exchange.connect(user1).makeOrder(token2.address, amount, token1.address, amount)
+			result = await transaction.wait()
 		})
 
 		describe('Cancelling orders', async () => {
@@ -277,7 +277,7 @@ describe('Exchange', () => {
 					result = await transaction.wait()
 				})
 
-				it('execute the trade and charge fees', async () => {
+				it('executes the trade and charge fees', async () => {
 							// token give
 					expect(await exchange.balanceOf(token1.address, user1.address)).to.equal(tokens(0))
 					expect(await exchange.balanceOf(token1.address, user2.address)).to.equal(tokens(1))

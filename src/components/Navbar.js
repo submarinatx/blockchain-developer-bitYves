@@ -60,7 +60,7 @@ const Navbar = () => {
             target='_blank'
             rel='noreferrer'
           >
-            {account.slice(0,8) + '...' + account.slice(38,42)}
+            {account.slice(0,8) + '...' + account.slice(37,42)}
             <Blockies
               seed={account}
               size={8}
