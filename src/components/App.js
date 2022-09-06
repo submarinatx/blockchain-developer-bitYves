@@ -45,7 +45,7 @@ function App() {
         // load token smart contracts
     const Btx = config[chainId].Btx
     const ETHx = config[chainId].ETHx
-    await loadTokens(provider, [Btx.address, ETHx.address], dispatch)
+    await loadTokens(provider, [Btx?.address, ETHx?.address], dispatch)
      
        // load exchange smart contract
     const exchangeConfig = config[chainId].exchange
