@@ -29,7 +29,7 @@ function App() {
        // connect ethers to blockchain
     const provider = loadProvider(dispatch)
 
-       // fetch current network's chainId (eg. Hardhat: 31337, kova:42)    
+       // fetch current network's chainId (eg. Hardhat: 31337, kova:42, goerli:5)    
     const chainId = await loadNetwork(provider, dispatch)
 
         // reload page when network changes
@@ -45,7 +45,7 @@ function App() {
         // load token smart contracts
     const Btx = config[chainId].Btx
     const ETHx = config[chainId].ETHx
-    await loadTokens(provider, [Btx?.address, ETHx?.address], dispatch)
+    await loadTokens(provider, [Btx.address, ETHx.address], dispatch)
      
        // load exchange smart contract
     const exchangeConfig = config[chainId].exchange
