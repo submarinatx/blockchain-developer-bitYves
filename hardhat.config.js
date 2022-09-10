@@ -31,6 +31,10 @@ module.exports = {
     mumbai: {
       url:`https://polygon-mumbai.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
       accounts: privateKeys.split(','),
+    },
+    bsc_testnet: {
+      url: `https://data-seed-prebsc-1-s1.binance.org:8545/`,
+      accounts: privateKeys.split(','),
     }
   },
 };
