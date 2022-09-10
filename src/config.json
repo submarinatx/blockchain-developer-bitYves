@@ -14,10 +14,22 @@
 		},
 		"explorerURL": "#"
 	},
-	"42": {
-		"explorerURL": "https://kovan.etherscan.io/"
+	"5": {
+		"exchange": {
+			"address": "0x2f7d0C29630D5564FaA9B709AE3F46F751Fa33FD"
+		},
+		"Btx": {
+			"address": "0x64384403C90a38fC56d5830F9C87ec68030f9957"
+		},
+		"ETHx": {
+			"address": "0x5fa68b99BaA7B1972bA5e4Bd7D56CB3278Ec38aA"
+		},
+		"DAIx": {
+			"address": "0xb0fd45F8B5e76669DbD8b75B6A2eeF4B22f4DD12"
+		},
+		"explorerURL": "https://goerli.etherscan.io/"
 	},
-	"5": {	
-		"explorerURL": "https://goerli.etherscan.io/"		
+	"42": {
+		"explorerURL": "https://kovan.etherscan.io/"		
 	}
 }

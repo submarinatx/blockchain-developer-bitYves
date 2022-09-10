@@ -10,7 +10,6 @@ const wait = (seconds) => {
 }
 
 async function main() {
-
 	// fetch accounts from wallet (unlocked)
 	const accounts = await ethers.getSigners()
 

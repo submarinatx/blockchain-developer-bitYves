@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
@@ -64,6 +64,7 @@ contract Token {
 		returns(bool success)
 	{
 		require(_spender != address(0));
+		
 		allowance[msg.sender][_spender] = _value;
 
 		emit Approval(msg.sender, _spender, _value);

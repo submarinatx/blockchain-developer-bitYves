@@ -1,14 +1,16 @@
 async function main() {
   console.log(`Preparing deployment...\n`)
-  // Fecth contract to deplot
+
+      // fecth contract to deploy
   const Token = await ethers.getContractFactory('Token');
   const Exchange = await ethers.getContractFactory('Exchange');
 
+      // fetch accounts
   const accounts = await ethers.getSigners()
 
   console.log(`Accounts fetched:\n${accounts[0].address}\n${accounts[1].address}\n`)
 
-  // Deploy contract
+      // deploy contract
   const btx = await Token.deploy('bitYves', 'BTX', '1000000')
   await btx.deployed()
   console.log(`BTX Deployed to: ${btx.address}`)
