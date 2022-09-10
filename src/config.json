@@ -27,9 +27,21 @@
 		"DAIx": {
 			"address": "0xb0fd45F8B5e76669DbD8b75B6A2eeF4B22f4DD12"
 		},
-		"explorerURL": "https://goerli.etherscan.io/"
+		"explorerURL": "https://goerli.etherscan.io/"	
 	},
-	"42": {
-		"explorerURL": "https://kovan.etherscan.io/"		
+	"80001": {
+		"exchange": {
+			"address": "0x498A698372474B34d4e158af96Ed633892Db240F"
+		},
+		"Btx": {
+			"address": "0xeE0d951B08193C2a690D9B72E671c05624e94E2f"
+		},
+		"ETHx": {
+			"address": "0x6a632c0Bb558bb55aa424c62e945e6E37327449B"
+		},
+		"DAIx": {
+			"address": "0xb6138e64AADB258B552efA511FB95ECcec4d644b"
+		},
+		"explorerURL": "https://mumbai.polygonscan.com/"
 	}
 }
